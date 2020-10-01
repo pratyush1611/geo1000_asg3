@@ -53,15 +53,13 @@ def as_wkt(p1, p2, p3, p4):
     """Returns Well Known Text string (POLYGON) for 4 points 
     defining the square
     """
-    temp,p2,p3,p4= list(p1),list(p2) , list(p3), list(p4) 
-    p1=temp.copy()
-    p1.extend(p2)
-    p1.extend(p3)
-    p1.extend(p4)
-    p1.extend(temp)
-
-
-    return( ''.join([ str(i) for i in p1 ]) )
+    fin=str()
+    for i in enumerate( (p1,p2,p3,p4) ):
+        if i[0]==0 : #first iteration
+            fin = (" ".join([str(_) for _ in  list(i[1])])).rstrip()
+        else:
+            fin = fin +','+(" ".join([str(_) for _ in  list(i[1])])).rstrip()
+    return("POLYGON " + "(("+fin + "))")
 
 
 def draw_pythagoras_tree(p1, p2, alpha, currentorder, totalorder, filename):
