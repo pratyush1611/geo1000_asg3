@@ -42,17 +42,26 @@ def split_point(p1, p2, alpha):
     """Returns the point above this top edge that defines 
     the two new boxes (together with points p1 and p2 of the top edge).
     """
-    # theta = absolute_angle(p1, p2)
-    dist = math.cos(alpha) * distance(p1, p2)
-    
-    return(  )
+    # theta = absolute_angle(p1, p2) #angle b/w edge and x axis 
+    theta=0
+    dist = math.cos(alpha) * distance(p1, p2) #dist of p3 fom p1
+    p3 = point_angle_distance(p1, alpha+theta , dist)
+    return( p3 )
 
 
 def as_wkt(p1, p2, p3, p4):
     """Returns Well Known Text string (POLYGON) for 4 points 
     defining the square
     """
-    pass
+    temp,p2,p3,p4= list(p1),list(p2) , list(p3), list(p4) 
+    p1=temp.copy()
+    p1.extend(p2)
+    p1.extend(p3)
+    p1.extend(p4)
+    p1.extend(temp)
+
+
+    return( ''.join([ str(i) for i in p1 ]) )
 
 
 def draw_pythagoras_tree(p1, p2, alpha, currentorder, totalorder, filename):
@@ -70,3 +79,5 @@ if __name__ == "__main__":
         currentorder=0,
         totalorder=6,
         filename='out.wkt')
+
+# %%
