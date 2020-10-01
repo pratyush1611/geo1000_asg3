@@ -63,10 +63,18 @@ def as_wkt(p1, p2, p3, p4):
 
 
 def draw_pythagoras_tree(p1, p2, alpha, currentorder, totalorder, filename):
-    p3,p4 = opposite_edge(p1, p2)
-    p5 = 0
+    currentorder=0
+    while currentorder<=totalorder:
+        p3,p4 = opposite_edge(p1, p2) # square complete
+        p5 = split_point(p3,p4,alpha) 
+        wkt_to_file = as_wkt(p1,p2,p3,p4) + ';' + str(currentorder) + ';' + str((distance(p1,p2)**2))
+        with open(filename,'a') as fh:
+            fh.write( '\n'+wkt_to_file)
+        #recursion to come here
+        currentorder +=1
+        draw_pythagoras_tree(p3, p5, alpha, currentorder, totalorder, filename)
+        draw_pythagoras_tree(p4, p5, alpha, currentorder, totalorder, filename)
     
-    pass
 
 
 if __name__ == "__main__":
