@@ -42,8 +42,8 @@ def split_point(p1, p2, alpha):
     """Returns the point above this top edge that defines 
     the two new boxes (together with points p1 and p2 of the top edge).
     """
-    # theta = absolute_angle(p1, p2) #angle b/w edge and x axis 
-    theta=0
+    theta = absolute_angle(p1, p2) #angle b/w edge and x axis 
+    # theta=0
     dist = math.cos(alpha) * distance(p1, p2) #dist of p3 fom p1
     p3 = point_angle_distance(p1, alpha+theta , dist)
     return( p3 )
@@ -63,6 +63,9 @@ def as_wkt(p1, p2, p3, p4):
 
 
 def draw_pythagoras_tree(p1, p2, alpha, currentorder, totalorder, filename):
+    p3,p4 = opposite_edge(p1, p2)
+    p5 = 0
+    
     pass
 
 
