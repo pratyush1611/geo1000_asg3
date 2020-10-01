@@ -25,7 +25,17 @@ def opposite_edge(p1, p2):
     """Compute edge parallel to the edge defined by the two given points 
     p1 and p2 (i.e. the opposite edge in the square).
     """
-    pass
+    
+    theta_p3 = absolute_angle(p1, p2) + (math.pi/4)
+    theta_p4 = absolute_angle(p1, p2) + (math.pi/2)
+
+    dist_p3 = distance(p1, p2)/(math.cos(math.pi/4))
+    dist_p4 = distance(p1, p2)
+    
+
+    p3 = point_angle_distance(p1, theta_p3, dist_p3)
+    p4 = point_angle_distance(p1, theta_p4, dist_p4)
+    return( p3, p4 )
 
 
 def split_point(p1, p2, alpha):
