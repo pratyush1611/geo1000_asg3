@@ -18,7 +18,7 @@ def point_angle_distance(pt, beta, distance):
 def absolute_angle(p1, p2):
     """Returns the angle (in radians) between the positive x-axis 
     and the line through two given points, p1 and p2"""
-    pass
+    return( math.atan2( p2[1] - p1[1] , p2[0] - p1[0]  ) )
 
 
 def opposite_edge(p1, p2):
