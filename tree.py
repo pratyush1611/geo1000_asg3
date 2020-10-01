@@ -1,17 +1,18 @@
 # GEO1000 - Assignment 3
 # Authors: Simon Pena Pereira & Pratyush Kumar
 # Studentnumbers: 5391210 & 5359252
-
+#%%
 import math
-
+#%%
 def distance(p1, p2):
     """Returns Cartesian distance (as float) between two 2D points"""
-    pass
+    return( math.sqrt( (p2[0] - p1[0])**2 + (p2[1] - p1[1])**2 ) )
 
 
 def point_angle_distance(pt, beta, distance):
     """Compute new point that is distance away from pt in direction beta"""
-    pass
+    x2,y2 = (  pt[0] + (distance * math.cos(beta))  ), (  pt[1] + (distance * math.sin(beta))  )
+    return( x2, y2 )
 
 
 def absolute_angle(p1, p2):
@@ -49,6 +50,7 @@ if __name__ == "__main__":
     with open('out.wkt', 'w') as fh:  # 'with' statement closes 
                                       # file automatically
         fh.write("geometry;currentorder;area\n")
+
     draw_pythagoras_tree(p1=(5,0), 
         p2=(6,0), 
         alpha=math.radians(45),
