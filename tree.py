@@ -42,7 +42,10 @@ def split_point(p1, p2, alpha):
     """Returns the point above this top edge that defines 
     the two new boxes (together with points p1 and p2 of the top edge).
     """
-    pass
+    # theta = absolute_angle(p1, p2)
+    dist = math.cos(alpha) * distance(p1, p2)
+    
+    return(  )
 
 
 def as_wkt(p1, p2, p3, p4):
