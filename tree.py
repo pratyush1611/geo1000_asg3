@@ -6,12 +6,12 @@ import math
 #%%
 def distance(p1, p2):
     """Returns Cartesian distance (as float) between two 2D points"""
-    return( math.sqrt( (p2[0] - p1[0])**2 + (p2[1] - p1[1])**2 ) )
+    return( round(math.sqrt( (p2[0] - p1[0])**2 + (p2[1] - p1[1])**2 ) , 4) )
 
 
 def point_angle_distance(pt, beta, distance):
     """Compute new point that is distance away from pt in direction beta"""
-    x2,y2 = (  pt[0] + (distance * math.cos(beta))  ), (  pt[1] + (distance * math.sin(beta))  )
+    x2,y2 = round(  pt[0] + (distance * math.cos(beta))  , 4), round(  pt[1] + (distance * math.sin(beta)) , 4 )
     return( x2, y2 )
 
 
