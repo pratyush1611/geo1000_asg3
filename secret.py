@@ -61,9 +61,9 @@ def reverse_relevant_parts(parts):
     """
     relev_rev_list = []
     for i in parts:
-        if i[0].isalpha(): #if that part is relevant
-            i.reverse()
-            relev_rev_list.extend(i)
+        if part_to_str(i).isalpha(): #if that part is relevant
+            j= reverse_part(i)
+            relev_rev_list.extend(j)
         else: #not relevant
             relev_rev_list.extend(i)
     return(relev_rev_list)
@@ -74,7 +74,7 @@ def glue(parts):
     
     Returns: string
     """
-    return( ''.join( [''.join(i) for i in parts] ) )
+    return( ''.join( [part_to_str(i) for i in parts] ) )
 
 
 def encrypt(sentence):
@@ -83,8 +83,9 @@ def encrypt(sentence):
     Input: a string
     Returns: a string
     """
-    pass
-
+    splitlist = split_in_parts(sentence)
+    revlist = reverse_relevant_parts(splitlist)
+    return glue(revlist)
 
 if __name__ == "__main__":
 
