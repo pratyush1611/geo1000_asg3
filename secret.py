@@ -74,7 +74,7 @@ def glue(parts):
     
     Returns: string
     """
-    pass
+    return( ''.join( [''.join(i) for i in parts] ) )
 
 
 def encrypt(sentence):
