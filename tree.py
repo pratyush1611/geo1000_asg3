@@ -93,4 +93,3 @@ if __name__ == "__main__":
         totalorder=6,
         filename='out.wkt')
 
-# %%
