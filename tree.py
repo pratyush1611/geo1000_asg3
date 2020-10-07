@@ -18,7 +18,7 @@ def point_angle_distance(pt, beta, distance):
 def absolute_angle(p1, p2):
     """Returns the angle (in radians) between the positive x-axis 
     and the line through two given points, p1 and p2"""
-    return( (math.atan2( p2[1] - p1[1] , p2[0] - p1[0] ) ) )
+    return( abs(math.atan2( p2[1] - p1[1] , p2[0] - p1[0] ) ) )
 
 
 def opposite_edge(p1, p2):
@@ -66,7 +66,7 @@ def draw_pythagoras_tree(p1, p2, alpha, currentorder, totalorder, filename):
     # while  currentorder < totalorder :
     p3,p4 = opposite_edge(p1, p2) # square complete
     p5 = split_point(p3,p4,alpha) 
-
+    print('p5 is {}'.format(p5))
         # write wkt
     wkt_to_file = as_wkt(p1,p2,p3,p4) + ';' + str(currentorder) + ';' + str((distance(p1,p2)**2))
     with open(filename,'a') as fh:
@@ -75,7 +75,7 @@ def draw_pythagoras_tree(p1, p2, alpha, currentorder, totalorder, filename):
         #recursion to come here
     if currentorder < totalorder :
         print(currentorder)
-        draw_pythagoras_tree(p3, p5, alpha, currentorder+1, totalorder, filename)
+        draw_pythagoras_tree(p5, p3, alpha, currentorder+1, totalorder, filename)
         #draw_pythagoras_tree(p4, p5, alpha, currentorder+1, totalorder, filename)
     
 #%%

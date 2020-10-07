@@ -6,27 +6,24 @@ def read_grid(filenm):
     f = open(filenm, "r")
     data = [f.read()]   
     coord = []
-    # print(data)
+    
     for i in data:
         for x in i:
             if str.isdigit(x):
                 coord.append(x)
     tuple_coord = [(int(coord[i]), int(coord[i+1])) for i in range(0,len(coord),2)]   
     datastr = [[tuple_coord[i],tuple_coord[i+1],tuple_coord[i+2],tuple_coord[i+3],tuple_coord[i+4]] for i in range(0,len(tuple_coord),5)]
-    # print('tuplecoord',tuple_coord)
-    # print('datasrt',datastr)
     return datastr
 
 
 def visit(table, steps_allowed, path):
-    treasure = (5,5)
+    treasure = (4,1)
     start = (0,0)
     path.append(start)
     steps_allowed -= 1 
            
     while steps_allowed > 0:
-        print("sa",steps_allowed)
-        i=path[-1]
+        i = path[-1]
         row = i[0]
         col = i[1]
         x,z = tuple(x for x in (table[row])[col])
@@ -34,19 +31,17 @@ def visit(table, steps_allowed, path):
         steps_allowed -= 1 
 
         if (x,z) == treasure:
-            print("finalstep", steps_allowed)
             return True
     return False
             
 
 def hunt(filenm, max_steps):
     table = read_grid(filenm)
-    print(table)
     steps_allowed = max_steps
     path = []
     
     result  = visit(table, steps_allowed, path)
-    print(path)
+   
     N = len(path)
     X,Y = (path[-1])
 
@@ -55,6 +50,6 @@ def hunt(filenm, max_steps):
     if result == False:
         return f"Could not find a treasure (in {N} steps)."
     
-
+    
 if __name__ == "__main__":
-    print(hunt('finite.txt', 5))
+    print(hunt('finite.txt', 20))
