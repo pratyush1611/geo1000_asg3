@@ -12,7 +12,9 @@ def reverse_part(part):
         >>> reverse_part(['t', 'h', 'i', 's'])
         ['s', 'i', 'h', 't']
     """
-    pass
+    revlist = part.copy()
+    revlist.reverse()
+    return revlist
 
 
 def part_to_str(part):
@@ -25,7 +27,8 @@ def part_to_str(part):
         "abc"
 
     """
-    pass
+    strlist = part
+    return "".join(strlist)
 
 
 def split_in_parts(sentence):
