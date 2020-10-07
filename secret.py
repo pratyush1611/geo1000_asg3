@@ -50,7 +50,7 @@ def split_in_parts(sentence):
             mainlist.append(temp)
             temp = []
             mainlist.append([i])
-
+    return(mainlist)
 
 
 def reverse_relevant_parts(parts):
@@ -59,7 +59,14 @@ def reverse_relevant_parts(parts):
     Input: list of lists, e.g. [['t', 'h', 'i', 's'], [' '], ['i', 's'], ['.']]
     Returns: list with sublists reversed that consist of letters only.
     """
-    pass
+    relev_rev_list = []
+    for i in parts:
+        if i[0].isalpha(): #if that part is relevant
+            i.reverse()
+            relev_rev_list.extend(i)
+        else: #not relevant
+            relev_rev_list.extend(i)
+    return(relev_rev_list)
 
 
 def glue(parts):
