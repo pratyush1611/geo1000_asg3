@@ -18,7 +18,7 @@ def point_angle_distance(pt, beta, distance):
 def absolute_angle(p1, p2):
     """Returns the angle (in radians) between the positive x-axis 
     and the line through two given points, p1 and p2"""
-    return( math.atan2( p2[1] - p1[1] , p2[0] - p1[0]  ) )
+    return( (math.atan2( p2[1] - p1[1] , p2[0] - p1[0] ) ) )
 
 
 def opposite_edge(p1, p2):
@@ -32,7 +32,6 @@ def opposite_edge(p1, p2):
     dist_p3 = distance(p1, p2)/(math.cos(math.pi/4))
     dist_p4 = distance(p1, p2)
     
-
     p3 = point_angle_distance(p1, theta_p3, dist_p3)
     p4 = point_angle_distance(p1, theta_p4, dist_p4)
     return( p3, p4 )
@@ -63,24 +62,29 @@ def as_wkt(p1, p2, p3, p4):
 
 
 def draw_pythagoras_tree(p1, p2, alpha, currentorder, totalorder, filename):
-    currentorder=0
-    while currentorder<=totalorder:
-        p3,p4 = opposite_edge(p1, p2) # square complete
-        p5 = split_point(p3,p4,alpha) 
-        wkt_to_file = as_wkt(p1,p2,p3,p4) + ';' + str(currentorder) + ';' + str((distance(p1,p2)**2))
-        with open(filename,'a') as fh:
-            fh.write( '\n'+wkt_to_file)
-        #recursion to come here
-        currentorder +=1
-        draw_pythagoras_tree(p3, p5, alpha, currentorder, totalorder, filename)
-        draw_pythagoras_tree(p4, p5, alpha, currentorder, totalorder, filename)
-    
 
+    # while  currentorder < totalorder :
+    p3,p4 = opposite_edge(p1, p2) # square complete
+    p5 = split_point(p3,p4,alpha) 
+
+        # write wkt
+    wkt_to_file = as_wkt(p1,p2,p3,p4) + ';' + str(currentorder) + ';' + str((distance(p1,p2)**2))
+    with open(filename,'a') as fh:
+        fh.write( '\n'+wkt_to_file)
+       
+        #recursion to come here
+    if currentorder < totalorder :
+        print(currentorder)
+        draw_pythagoras_tree(p3, p5, alpha, currentorder+1, totalorder, filename)
+        #draw_pythagoras_tree(p4, p5, alpha, currentorder+1, totalorder, filename)
+    
+#%%
 
 if __name__ == "__main__":
     with open('out.wkt', 'w') as fh:  # 'with' statement closes 
                                       # file automatically
         fh.write("geometry;currentorder;area\n")
+        fh.close()
 
     draw_pythagoras_tree(p1=(5,0), 
         p2=(6,0), 
