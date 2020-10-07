@@ -1,6 +1,6 @@
 # GEO1000 - Assignment 3
-# Authors: Simon Pena Pereira & Pratyush Kumar
-# Studentnumbers: 5391210 & 5359252
+# Authors :
+# Studentnumbers :
 
 def reverse_part(part):
     """Take as input a list
@@ -27,7 +27,7 @@ def part_to_str(part):
         "abc"
 
     """
-    strlist = part.copy()
+    strlist = part
     return "".join(strlist)
 
 
@@ -41,7 +41,16 @@ def split_in_parts(sentence):
         [['t', 'h', 'i', 's'], [' '], ['i', 's'], ['.']]
 
     """
-    pass
+    mainlist = []
+    temp = []
+    for i in sentence:
+        if i.isalpha(): #check if is a letter
+            temp.append(i)
+        else: # if is not letter
+            mainlist.append(temp)
+            temp = []
+            mainlist.append([i])
+
 
 
 def reverse_relevant_parts(parts):
@@ -50,14 +59,8 @@ def reverse_relevant_parts(parts):
     Input: list of lists, e.g. [['t', 'h', 'i', 's'], [' '], ['i', 's'], ['.']]
     Returns: list with sublists reversed that consist of letters only.
     """
-    relev_rev_list = []
-    for i in parts:
-        if i[0].isalpha(): #if that part is relevant
-            i.reverse()
-            relev_rev_list.extend(i)
-        else: #not relevant
-            relev_rev_list.extend(i)
-    return(relev_rev_list)
+    pass
+
 
 def glue(parts):
     """Transforms the list of sublists back into a new string
