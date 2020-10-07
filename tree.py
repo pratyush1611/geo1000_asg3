@@ -53,7 +53,7 @@ def as_wkt(p1, p2, p3, p4):
     defining the square
     """
     fin=str()
-    for i in enumerate( (p1,p2,p3,p4) ):
+    for i in enumerate( (p1,p2,p3,p4,p1) ):
         if i[0]==0 : #first iteration
             fin = (" ".join([str(_) for _ in  list(i[1])])).rstrip()
         else:
