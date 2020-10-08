@@ -42,7 +42,6 @@ def split_point(p1, p2, alpha):
     the two new boxes (together with points p1 and p2 of the top edge).
     """
     theta = absolute_angle(p1, p2) #angle b/w edge and x axis 
-    # theta=0
     dist = math.cos(alpha) * distance(p1, p2) #dist of p3 fom p1
     p3 = point_angle_distance(p1, alpha+theta , dist)
     return( p3 )
@@ -58,22 +57,27 @@ def as_wkt(p1, p2, p3, p4):
             fin = (" ".join([str(_) for _ in  list(i[1])])).rstrip()
         else:
             fin = fin +','+(" ".join([str(_) for _ in  list(i[1])])).rstrip()
-    return("POLYGON " + "(("+fin + "))")
+    return("POLYGON " + "(("+ fin + "))")
 
 
 def draw_pythagoras_tree(p1, p2, alpha, currentorder, totalorder, filename):
+    """function to draw a pythagorean tree
 
-    # while  currentorder < totalorder :
+    Args:
+        p1 (tuple): coordinate of base of square
+        p2 (tuple): coordinate of base of square
+        alpha (radians , int): angle in radians
+        currentorder (int): current order
+        totalorder (int): total iterations for tree
+        filename (str): file for the wkt
+    """
     p3,p4 = opposite_edge(p1, p2) # square complete
     p5 = split_point(p3,p4,alpha) 
-    print(p3,p4)
-    print('p5 is {}'.format(p5))
-        # write wkt
+    # write wkt
     wkt_to_file = as_wkt(p1,p2,p3,p4) + ';' + str(currentorder) + ';' + str((distance(p1,p2)**2))
     with open(filename,'a') as fh:
         fh.write( '\n'+wkt_to_file)
-       
-        #recursion to come here
+    #iterate if current order hasnt reached totalorder
     if currentorder < totalorder :
         print(currentorder)
         draw_pythagoras_tree(p3, p5, alpha, currentorder+1, totalorder, filename)
@@ -92,4 +96,3 @@ if __name__ == "__main__":
         currentorder=0,
         totalorder=6,
         filename='out.wkt')
-
