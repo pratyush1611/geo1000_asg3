@@ -1,6 +1,6 @@
 # GEO1000 - Assignment 3
-# Authors :
-# Studentnumbers :
+# Authors: Simon Pena Pereira & Pratyush Kumar
+# Studentnumbers: 5391210 & 5359252
 
 def reverse_part(part):
     """Take as input a list
